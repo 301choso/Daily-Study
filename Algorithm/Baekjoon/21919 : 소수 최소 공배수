@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class Num21919 { //수열에서 소수를 뽑아 최소공배수 구하기
+
+	public static int N;
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		N = sc.nextInt();
+		
+		long ans =1;
+		for(int i=0; i<N; i++) {
+			long a;
+			a = sc.nextInt();
+			if(isPrimeNumber(a)) {
+				ans = lcm(ans, a);
+			}
+		}
+		
+		if(ans == 1) {
+			System.out.println(-1);
+		}else {
+			System.out.println(ans);
+		}
+		
+	}
+	
+	
+	//소수판별 함수
+	public static boolean isPrimeNumber(long x) {
+		
+		for(long i =2; i<=Math.sqrt(x);i++) { //제곱근까지만 구해서 시간절약
+			if(x%i == 0) { //나누어 떨어지는 수가 있으면 소수가 아님
+				return false;
+			}
+		}
+		return true; //소수임
+	}
+	
+	//최대공약수 구하는 함수
+	public static long gcd(long x, long y) {
+		while(y != 0) {
+			long temp = x % y;
+			x = y;
+			y = temp; //나머지
+		}
+		
+		return x;
+	}
+	
+	//최소공배수 구하는 함수
+	public static long lcm(long x, long y) {
+		return x / gcd(x,y) * y; //
+	}
+}
