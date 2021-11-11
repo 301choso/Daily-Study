@@ -47,6 +47,6 @@ public class Num21918 {
 		for(int b : bulb) {
 			System.out.print(b+" ");
 		}
+		
 	}
-
 }
