@@ -3,7 +3,9 @@ import java.util.HashMap;
 
 class Solution {
     public int[] solution(int[] lottos, int[] win_nums) {
+    
      int[] result = new int[2];
+     
        Map<Integer,Integer> map = new HashMap<Integer,Integer>();
        map.put(6,1);
        map.put(5,2);
