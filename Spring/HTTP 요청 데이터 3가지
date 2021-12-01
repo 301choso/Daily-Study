@@ -9,3 +9,4 @@
 - HTTP messagebody에 직접 담아 요청
 
  : HTTP API에 JSON, XML,TEXT 를 넣음(POST, PUT, PATCH)
+ 
