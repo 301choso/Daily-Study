@@ -1,0 +1,31 @@
+import java.util.*;
+class Solution {
+    public String solution(String[] cards1, String[] cards2, String[] goal) {
+        
+        Queue q1 = new LinkedList<>();
+        Queue q2 = new LinkedList<>();
+        
+        // 큐에 넣기
+        for (String c1 : cards1) {
+          q1.offer(c1);  
+        }
+        
+        for (String c2 : cards2) {
+          q2.offer(c2);  
+        }
+        
+        // goal에서 빼면서 같이 빼기, 두개 다 없으면 NO, 
+        int len = goal.length;
+        for(int i = 0; i < len; i++) {
+            if (goal[i].equals(q1.peek())) {
+                q1.poll();
+            } else if (goal[i].equals(q2.peek())) {
+                q2.poll();
+            } else {
+                return "No";
+            }
+        }
+    
+        return "Yes";
+    }
+}
