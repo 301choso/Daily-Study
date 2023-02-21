@@ -1,0 +1,32 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String s, String skip, int index) {
+        String answer = "";
+        
+        
+        // 알파벳 추가하기
+        ArrayList<Character> c = new ArrayList<>();        
+        for (int i=97; i<=122; i++) {
+            c.add((char)i);
+        }
+        
+        // 스킵할 알파벳 제거하기
+        int len = skip.length();
+        for (int i=0; i<len; i++) {
+            c.remove(c.indexOf(skip.charAt(i)));
+        }
+        
+        // index만큼 이동하면서 결과값 만들기
+        int sLen = s.length();
+        for (int i=0; i<sLen; i++) {
+            int idx = c.indexOf(s.charAt(i)) + index;
+            while (idx >= c.size()) { // 인덱스 값이 문자열보다 클 경우 예외처리 필요
+                idx -= c.size();
+            }
+            answer += c.get(idx);
+        }
+        
+        return answer;
+    }
+}
