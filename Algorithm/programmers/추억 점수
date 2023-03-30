@@ -1,0 +1,35 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] name, int[] yearning, String[][] photo) {
+
+        // name : yearning => Map
+        Map<String, Integer> nMap = new HashMap<>();
+        int nlen = name.length;
+        for(int i = 0; i < nlen; i++) {
+            nMap.put(name[i], yearning[i]);
+        }
+
+        // ArrayList에 더하고 sum에 합산 후 answer에 추가
+        int plen = photo.length;
+        int[] answer = new int[plen];
+
+        for(int i = 0; i < plen; i++) {
+            int ilen = photo[i].length;
+            ArrayList<Integer> list = new ArrayList<>();
+            for(int j = 0; j < ilen; j++) {
+                if(nMap.containsKey(photo[i][j])) {
+                    int num = nMap.get(photo[i][j]);
+                    list.add(num);
+                }
+            }
+            IntSummaryStatistics sums = list.stream()
+                            .mapToInt(num -> num)
+                            .summaryStatistics();
+            answer[i] = (int)sums.getSum();
+        }
+        return answer;
+    }
+}
+// Map에 담고, 있으면 
+// 전체합산 * (각각 합산)
