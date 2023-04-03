@@ -1,0 +1,60 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] park, String[] routes) {
+        int[] answer = new int[2];
+        
+        //이차원배열 셋팅 & 시작지점 찾기 
+        Character[][] load = new Character[park.length][park[0].length()];
+        int s1 =0;
+        int s2 = 0;
+        for(int i = 0; i < park.length; i++) {
+            for(int j = 0; j < park[0].length(); j++) {
+                if(park[i].charAt(j) == 'S') {
+                    s1 = i;
+                    s2 = j;
+                }
+                load[i][j] = park[i].charAt(j);
+            }
+        }
+        // 방향
+        int[][] move = {{0,1}, {-1,0}, {1,0}, {0,-1}};// E, N, S, W
+        Map<String, Integer> mMap = new HashMap<>();
+        mMap.put("E", 0);
+        mMap.put("N", 1);
+        mMap.put("S", 2);
+        mMap.put("W", 3);
+        
+        // 실행
+        for(int r = 0; r < routes.length; r++) {
+            int x = s1;
+            int y = s2;
+            String[] c  = routes[r].split(" ");
+            int num = mMap.get(c[0]);
+            boolean flag = false;
+            for(int n = 0; n < Integer.parseInt(c[1]); n++) {
+                x += move[num][0];
+                y += move[num][1];
+                // 방향을 벗어나는지
+                if(x < 0 || x >= park.length || y < 0 || y >= park[0].length()) {
+                    break;
+                }
+                // 장애물을 만나는지
+                if(load[x][y] == 'X') {
+                    break;
+                }
+                if(n == Integer.parseInt(c[1])-1) {
+                    flag = true;
+                }
+            }
+            // 시작점갱신
+            if (flag) {
+                s1 = x;
+                s2 = y;
+            }
+        }
+        answer[0] = s1;
+        answer[1] = s2;
+        return answer;
+    }
+}
