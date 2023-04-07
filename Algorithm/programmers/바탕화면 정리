@@ -1,0 +1,20 @@
+class Solution {
+    public int[] solution(String[] wallpaper) {
+        int[] result = new int[4];
+        result[0] = wallpaper.length-1;
+        result[1] = wallpaper[0].length()-1;
+        
+        for(int i = 0; i < wallpaper.length; i++) { // x
+            for(int j = 0; j < wallpaper[i].length(); j++) { // y
+                if(wallpaper[i].charAt(j) == '#') {
+                    result[0] = Math.min(i,result[0]);
+                    result[1] = Math.min(j,result[1]);
+                    result[2] = Math.max(i+1,result[2]); 
+                    result[3] = Math.max(j+1,result[3]);
+                }
+            }
+        }
+        
+        return result;
+    }
+}
