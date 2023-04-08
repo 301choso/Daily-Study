@@ -1,0 +1,30 @@
+import java.util.*;
+class Solution {
+    public String[] solution(String[] players, String[] callings) {
+        Map<String, Integer> map1 = new HashMap<>();
+        Map<Integer, String> map2 = new HashMap<>();
+        
+        for(int i = 0; i < players.length; i++) {
+           map1.put(players[i], i);
+           map2.put(i, players[i]);
+        }
+        
+        for(int i = 0; i < callings.length; i++) {
+           int idx = map1.get(callings[i]);
+           String swap = map2.get(idx-1); // 바꿀 선수
+            
+           map1.put(swap, idx); 
+           map1.put(callings[i], idx-1); 
+            
+           map2.put(idx, swap); 
+           map2.put(idx-1, callings[i]);
+        }
+        
+        String[] answer = new String[players.length];
+        for(int i = 0; i < players.length; i++) {
+            answer[i] = map2.get(i);
+        }
+        
+        return answer;
+    }
+}
