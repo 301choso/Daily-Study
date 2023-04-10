@@ -1,0 +1,41 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] keymap, String[] targets) {
+        int[] answer = new int[targets.length];
+        
+        for(int i = 0; i < targets.length; i++) {
+            Map<Character, Integer> map = new HashMap<>();
+            String str = targets[i];
+            // 중복제거
+            for(int j = 0; j < str.length(); j++) {
+                map.put(str.charAt(j), map.getOrDefault(str.charAt(j), 0) +1);
+            }
+            int sum = 0;
+            for(Character key : map.keySet()) {
+                int min = Integer.MAX_VALUE;
+                boolean flag = false;
+                for(int k = 0; k < keymap.length; k++) {
+                    
+                    if(keymap[k].contains(String.valueOf(key))) {
+                        flag = true;
+                        
+                        if(keymap[k].indexOf(key)+1 < min) {
+                            min = keymap[k].indexOf(key)+1;    
+                        } 
+                    }
+                }
+                if(flag) {
+                   sum += ( min * map.get(key));
+                } else {
+                    sum = -1;
+                    break; // 이 부분 없어서 값을 계속 덮어쓰고 테스트케이스 15~22번 에러가 났었다.
+                }
+                
+            }
+            answer[i] = sum;
+        }
+        
+        return answer;
+    }
+} 
