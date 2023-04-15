@@ -1,0 +1,22 @@
+import java.util.Arrays;
+
+class Solution {
+    public String solution(String s) {
+        String[] arrStr = s.split(" ");
+        int[] arrInt = new int[arrStr.length];
+        int i=0;
+        for(String part : arrStr){
+          arrInt[i] = Integer.parseInt(part);
+          i++;
+        }
+        
+        Arrays.sort(arrInt);
+        
+        StringBuffer sb = new StringBuffer();
+        sb.append(arrInt[0]);        
+        sb.append(" ");
+        sb.append(arrInt[arrInt.length-1]);
+
+        return sb.toString();
+    }
+}
