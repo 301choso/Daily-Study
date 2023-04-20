@@ -1,0 +1,36 @@
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.Comparator;
+
+class Solution {
+    public int solution(int k, int[] tangerine) {
+        int answer = 0;
+        // 몇번 나왔는지 센 후에 가장 높은 것 순서대로 k개를 추출한다.
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i=0; i<tangerine.length; i++) {
+            map.put(tangerine[i], map.getOrDefault(tangerine[i] , 0) + 1);
+        }
+        
+        // 값으로 정렬
+        List<Entry<Integer, Integer>> list = new ArrayList<Entry<Integer, Integer>>(map.entrySet());
+
+        Collections.sort(list, new Comparator<Entry<Integer, Integer>>() {
+            public int compare(Entry<Integer, Integer> o1, Entry<Integer, Integer> o2) {
+                //내림차순
+                return o2.getValue().compareTo(o1.getValue());
+            }
+        });
+        
+        //경화가 귤 k개를 고를 때 크기가 서로 다른 종류의 수의 최솟값
+        int sum = 0;
+        for(int i=0; i<k; i++) {
+            answer++;
+            sum += list.get(i).getValue();
+            if(sum >= k) {
+                break;
+            }   
+        }
+        
+        return answer;
+    }
+}
