@@ -1,0 +1,35 @@
+class Solution {
+    public String solution(String s) {
+        StringBuilder sb = new StringBuilder();
+        
+        char[] cs = s.toCharArray();
+        
+        // 첫글자 처리
+        int ci = (int)cs[0]; 
+        String ss = String.valueOf(cs[0]);
+        if((ci >= 65 && ci <= 90) || (ci >= 97 && ci <= 122)) {
+            //문자이면 대문자로
+            ss = ss.toUpperCase();
+        }
+        sb.append(ss);
+        
+        for(int i=1; i<cs.length; i++) {
+            ss = String.valueOf(cs[i]);
+            ci = (int)cs[i];
+            if(cs[i-1] == ' ') {
+                // 문자이면 대문자로
+                if((ci >= 65 && ci <= 90) || (ci >= 97 && ci <= 122)) {
+                    ss = ss.toUpperCase();
+                }
+            } else if (cs[i] != ' '){
+                // 문자이면 소문자로
+                if((ci >= 65 && ci <= 90) || (ci >= 97 && ci <= 122)) {
+                    ss = ss.toLowerCase();
+                }
+            }
+            
+            sb.append(ss);
+        }
+        return sb.toString();
+    }
+}
