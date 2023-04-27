@@ -1,0 +1,24 @@
+class Solution {
+    public int solution(String ineq, String eq, int n, int m) {
+        int answer = 0;
+        boolean in = (ineq.equals("<")) ? true : false;
+        boolean ee = (eq.equals("=")) ? true : false;
+        boolean result = true;
+        
+       if(in) { 
+           if(ee) { // <=
+               answer = (n <= m)? 1 : 0;
+           } else {
+               answer = (n < m)? 1 : 0;
+           }
+           
+       } else if (!in) {
+          if(ee) { // >=
+               answer = (n >= m)? 1 : 0;
+           } else {
+               answer = (n > m)? 1 : 0;
+           } 
+       }    
+        return answer;
+    }
+}
