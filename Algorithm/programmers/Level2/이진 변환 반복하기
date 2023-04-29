@@ -1,0 +1,36 @@
+class Solution {
+    public int[] solution(String s) {
+        int[] answer = new int[2];
+        int rmcnt = 0;
+        int reply = 0;
+        int origin = 0;
+        int ones = 0;
+        
+        while(s.length() > 1) {
+            reply++;
+            
+            origin = s.length();
+            s = s.replaceAll("0", "");
+            ones = s.length();
+            
+            if(s.length() <= 0) {
+                break;
+            }
+            
+            int zeros = origin - ones;            
+            rmcnt += zeros;
+            
+            s = "";
+            // 이진수로 변환
+            while(ones > 0) {
+                s += String.valueOf(ones % 2);
+                ones /= 2;
+            }
+        }
+        
+        answer[0] = reply;
+        answer[1] = rmcnt;
+        
+        return answer;
+    }
+}
