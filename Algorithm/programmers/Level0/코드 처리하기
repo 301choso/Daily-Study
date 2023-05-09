@@ -1,0 +1,42 @@
+class Solution {
+    StringBuilder answer = new StringBuilder();
+    boolean mode = false;
+    public void odd(int i, char c) {
+        if(i % 2 == 1) {
+            answer.append(c);
+        }
+    }
+    public void even(int i, char c) {
+        if(i % 2 == 0) {
+            answer.append(c);
+        }
+    }
+    public void changeMode() {
+        if(mode) {
+            mode = false;
+        } else {
+            mode = true;
+        }
+    }
+    public String solution(String code) {
+        
+        for(int i=0; i<code.length(); i++) {
+            if(code.charAt(i) == '1') {
+                changeMode();
+            } else {
+                if(mode) {
+                    odd(i, code.charAt(i));
+                } else {
+                    even(i, code.charAt(i));
+                }
+            }
+            
+        }
+        
+        String ret = answer.toString();
+        if (ret.isEmpty()) {
+            ret = "EMPTY";
+        }
+        return ret;
+    }
+}
