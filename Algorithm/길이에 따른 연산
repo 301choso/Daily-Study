@@ -1,0 +1,15 @@
+import java.util.Arrays;
+class Solution {
+    public int solution(int[] num_list) {
+       return num_list.length >= 11 ? 
+             Arrays.stream(num_list).reduce(0,(x,y) -> x + y):        
+            Arrays.stream(num_list).reduce(1, (x,y) -> x * y);
+    }
+}
+
+/*
+  // reduce = 스트림의 원소들을 하나씩 소모해가며, 누적 계산을 수행하고 결과값을 리턴하는 메서드
+  Optional<T> reduce(BinaryOperator<T> accumulator) -> 파라미터 1개, 초기값 없음 (OptionalInt 리턴)
+  T reduce(T identity, BinaryOperator<T> accumulator) -> 파라미터 2개, 초기값 필요 (int 리턴)
+
+*/
