@@ -1,0 +1,11 @@
+class Solution {
+    public int solution(int a, int b) {
+        if(a % 2 == 1 && b % 2 == 1) {
+             return (int)Math.pow(a,2) + (int)Math.pow(b,2); // 제곱의 합   
+        }
+        if(a % 2 == 0 && b % 2 == 0) {
+            return Math.abs(a-b); // 절대값
+        }
+        return 2 * (a + b);
+    }
+}
